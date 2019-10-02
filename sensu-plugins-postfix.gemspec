@@ -30,18 +30,28 @@ Gem::Specification.new do |s|
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsPostfix::Version::VER_STRING
 
-  s.add_runtime_dependency 'sensu-plugin', '~> 1.2'
+  s.add_runtime_dependency 'sensu-plugin', '~> 4.0'
 
-  s.add_development_dependency 'bundler',                   '~> 1.7'
-  s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
+  s.add_development_dependency 'bundler', '~> 1.7'
+  s.add_runtime_dependency     'dnsruby', '~> 1.59', '>= 1.59.2'
+  s.add_runtime_dependency     'public_suffix',             '~> 2'
+  s.add_development_dependency 'codeclimate-test-reporter', '~> 1.0'
   s.add_development_dependency 'github-markup',             '~> 3.0'
+  s.add_runtime_dependency     'whois',                     '~> 4.0'
+  # locked to keep ruby < 2.5 support
+  s.add_runtime_dependency     'whois-parser',              ['> 1.0', '< 5.0']
+  # locked to keep ruby < 2.5 support, this is pulled in by whois-parser
+  s.add_runtime_dependency     'activesupport',             '< 6.0'
+  s.add_development_dependency 'kitchen-docker',            '~> 2.6'
+  s.add_development_dependency 'kitchen-localhost',         '~> 0.3'
+  # locked to keep ruby 2.1 support, this is pulled in by test-kitchen
+  s.add_development_dependency 'mixlib-shellout',           ['< 2.3.0', '~> 2.2']
   s.add_development_dependency 'pry',                       '~> 0.10'
   s.add_development_dependency 'rake',                      '~> 12.3'
   s.add_development_dependency 'redcarpet',                 '~> 3.2'
   s.add_development_dependency 'rspec',                     '~> 3.1'
-  s.add_development_dependency 'rubocop',                   '~> 0.40.0'
-  s.add_development_dependency 'yard',                      '~> 0.8'
-  s.add_development_dependency 'test-kitchen',              '~> 1.5'
-  s.add_development_dependency 'kitchen-vagrant',           '~> 0.19.0'
-  s.add_development_dependency 'kitchen-localhost',         '~> 0.3'
+  s.add_development_dependency 'rubocop',                   '~> 0.51.0'
+  # intentionally locked as 1.17 requires ruby 2.3+
+  s.add_development_dependency 'test-kitchen',              '~> 1.16.0'
+  s.add_development_dependency 'yard',                      '~> 0.9.11'
 end
